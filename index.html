@@ -4,272 +4,481 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Pratham Joshi - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f5;
+            color: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #0080ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+        }
+
+        nav .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+        }
+
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+
+        /* Main Section */
+        .main-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1600/900') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        .main-section h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .main-section p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .main-section button {
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .main-section button:hover {
+            background-color: #16a085;
+        }
+
+        /* Education Section */
+        .education {
+            padding: 50px 20px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .education h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .education-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .education-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .education-item p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 50px 20px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .project-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+        }
+
+        .project img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            color: #7f8c8d;
+        }
+
+        .certification-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .certification-item {
+            position: relative;
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .certification-item:hover {
+            transform: scale(1.05);
+        }
+
+        .certification-image {
+            width: 100%;
+            border-bottom: 2px solid #2c3e50;
+        }
+
+        .certification-info {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .certification-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .certification-info p {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 50px 20px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+
+        .skills h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .skills-list {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .skills-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .skills-item p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .resume {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #ecf0f1;
+    }
+
+    .resume h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #2c3e50;
+    }
+
+    .resume p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .resume-btn {
+        display: inline-block;
+        background-color: #1abc9c;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+    }
+
+    .resume-btn:hover {
+        background-color: #16a085;
+    }
+
+    /* Iframe to View Resume */
+    .resume-iframe {
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    </style>
 </head>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        background-color: rgb(14, 0, 64);
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .mainsection {
-        background: url("/istockphoto-865457032-612x612\ \(1\)\ \(1\)\ \(1\)\ \(1\).png") no-repeat center;
-        height: 100vh;
-        color: #fff;
-        min-height: 402px;
-        background-size: cover;
-        background-attachment: fixed;
-    }
-
-    nav {
-        margin: 0 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 80px;
-    }
-
-    nav .left {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-
-    nav img {
-        max-width: 89px;
-        max-height: 113px;
-    }
-
-    nav ul {
-        display: flex;
-        justify-content: center;
-    }
-
-    nav ul li {
-        list-style: none;
-        margin: 20px;
-    }
-
-    nav ul li a {
-        text-decoration: none;
-        color: white;
-        font-size: 1.2rem;
-    }
-
-    nav ul li a:hover {
-        color: rgb(45, 214, 214);
-    }
-
-    .firstsection {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: calc(100vh - 80px);
-    }
-
-    .firstsection .leftsection {
-        width: 40%;
-        font-size: 3rem;
-    }
-
-    .firstsection .rightsection img {
-        max-width: 350px;
-    }
-
-    .firstsection span {
-        font-style: italic;
-        color: pink;
-    }
-
-    .secondsection {
-        height: max-content;
-        background: #d41515;
-    }
-
-    .skill {
-        position: relative;
-        max-width: 1000px;
-        margin: auto;
-        overflow: hidden;
-    }
-
-    .skilled {
-        align-items: center;
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
-
-    .slide {
-        align-items: center;
-        min-width: 100%;
-        box-sizing: border-box;
-    }
-
-    .slide img {
-        width: 100%;
-        vertical-align: middle;
-    }
-
-    .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 16px;
-        color: rgb(199, 13, 13);
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-    }
-
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(4, 155, 255, 0.8);
-    }
-
-    .thridsection {
-        height: 200px; 
-        background: rgb(151, 12, 12);
-        align-items: center;
-        
-    }
-    .thridsection h1 {
-        color: rgb(255, 0, 255);
-        align-items: center;
-        text-align: center;
-
-    }
-   
-    
-</style>
-
 <body>
-    <section class="mainsection">
-        <nav>
-            <div class="left">
-                Pratham Portfolio
-            </div>
-            <div class="right">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#skilles">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
 
-        <section class="firstsection" id="home">
-            <div class="leftsection">
-                <span>Hi, This is Pratham</span>
-                <div>I am a skilled</div>
-                <span id="element"></span>
-            </div>
-            <div class="rightsection">
-                <img src="Untitled_design__1_-removebg-preview.png" alt="Profile Picture">
-            </div>
-        </section>
+    <!-- Navbar -->
+    <nav>
+        <div class="brand">Pratham Joshi</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <section class="main-section" id="home">
+        <h1>Hi, I'm Pratham Joshi</h1>
+        <p>Software Developer | Web Developer | Freelancer</p>
+        <button onclick="scrollToSection('projects')">View My Work</button>
     </section>
 
-    <section class="secondsection" id="skilles">
-        <div class="skill">
-            <div class="skilled">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <img src="Skill1.png" alt="Skill 1">
-                </div>
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <img src="Skill2.png" alt="Skill 2">
-                </div>
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <img src="Skill3.png" alt="Skill 3">
-                </div>
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <img src="Skill4.png" alt="Skill 4">
-                </div>
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <h2>My Education</h2>
+        <div class="education-list">
+            <div class="education-item">
+                <h3>B.Tech in Computer Science</h3>
+                <p>Prestige Institute of Engineering Management and Research, Indore (2022 - 2026)</p>
             </div>
-
-            <!-- Navigation buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
     </section>
-    <section class="thridsection" id="projects">
-        <h1 id="pro"> Click and you redirect to that project </h1> 
-        <ul>
-            <li><img src="Pratham joshi GDSC 2022.png" alt=""></li>
-        </ul>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2>My Projects</h2>
+        <div class="project-list">
+            <div class="project">
+                <img src="https://picsum.photos/300" alt="Portfolio Project">
+                <h3>Portfolio Website</h3>
+                <p>Developed a responsive portfolio using HTML, CSS, and JavaScript to showcase my skills and projects.
+                </p>
+            </div>
+            <div class="project">
+                <img src="https://picsum.photos/300" alt="Freelancing Platform">
+                <h3>Freelancing Platform (Ongoing)</h3>
+                <p>Currently developing a platform to connect freelancers with clients, featuring project management
+                    tools and secure payments.</p>
+            </div>
+        </div>
     </section>
-    <section class="fourthsection"> </section>
+
+    <section class="certifications" id="certifications">
+        <h1 style="font-size: 35px; text-align:center;">Certifications</h1>
+        <div class="certification-gallery">
+            <div class="certification-item">
+                <img src="https://picsum.photos/300/200" alt="Certification 1" class="certification-image">
+                <div class="certification-info">
+                    <h3>Certification Name 1</h3>
+                    <p>Issued by Organization</p>
+                    <p>Month, Year</p>
+                </div>
+            </div>
+            <div class="certification-item">
+                <img src="https://picsum.photos/300/200" alt="Certification 2" class="certification-image">
+                <div class="certification-info">
+                    <h3>Certification Name 2</h3>
+                    <p>Issued by Organization</p>
+                    <p>Month, Year</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
 
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script>
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skills-item">
+                <h3>Programming Languages</h3>
+                <p>Python, Java, C++</p>
+            </div>
+            <div class="skills-item">
+                <h3>Web Development</h3>
+                <p>HTML, CSS, JavaScript</p>
+            </div>
+            <div class="skills-item">
+                <h3>Database Management</h3>
+                <p>SQL</p>
+            </div>
+            <div class="skills-item">
+                <h3>Tools</h3>
+                <p>Microsoft Excel, Microsoft Office, Project Management</p>
+            </div>
+            <div class="skills-item">
+                <h3>Soft Skills</h3>
+                <p>Communication, Leadership, Team Collaboration</p>
+            </div>
+        </div>
+    </section>
+    <section class="resume" id="resume">
+        <h2>My Resume</h2>
+        <p>You can download my resume using the button:</p>
         
+        <a href="Pratham_2.pdf" download="Pratham_Joshi_Resume.pdf" class="resume-btn">Download Resume</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 Pratham Joshi</p>
+        <p>Email: <a href="mailto:prathamjoshi355@gmail.com">prathamjoshi355@gmail.com</a></p>
+        <p>Phone: <a href="tel:+919302370048">+91 93023 70048</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/pratham-joshi/" target="_blank">pratham-joshi</a></p>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
 
-        var typed = new Typed('#element', {
-            strings: ['Ethical Hacker.', 'Software Developer', 'Penetration Tester', 'Web Developer'],
-            typeSpeed: 120,
-            backSpeed: 100,
-            loop: true
-        });
-
-        let slideIndex = 0;
-        showSlides();
-
-        function showSlides() {
-            const slides = document.querySelectorAll('.slide');
-            slides.forEach((slide) => {
-                slide.style.transform = `translateX(${-slideIndex * 100}%)`;
-            });
+        // Scroll to section function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
-
-        function plusSlides(n) {
-            const slides = document.querySelectorAll('.slide');
-            slideIndex += n;
-
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;
-            } else if (slideIndex < 0) {
-                slideIndex = slides.length - 1;
-            }
-
-            showSlides();
-        }
-
-
-        setInterval(() => {
-            plusSlides(1);
-        }, 3200);
     </script>
 </body>
 
